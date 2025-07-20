@@ -7,7 +7,7 @@ export interface TabItem {
   content: ReactNode
 }
 
-interface TabsProps {
+type TabsProps = {
   tabs: TabItem[]
 }
 

@@ -28,3 +28,7 @@ body {
   background-color: lightcyan;
   min-height: 100vh;
 }
+
+.styled-button {
+  @apply px-4 py-1 rounded-lg text-white bg-blue-600 -mb-px text-sm font-medium justify-center;
+}

@@ -1,15 +1,24 @@
+import JsonConfig from './components/JsonConfig'
 import Tabs from './components/Tabs'
+import ResultView from './components/ResultView'
+import { JsonProvider } from './context/JsonContext/JsonProvider'
 
 function App() {
   return (
-    <div className="max-w-[600px] max-h-[800px] p-10">
-      <Tabs
-        tabs={[
-          { id: 'config', label: 'Config', content: <div>first tab</div> },
-          { id: 'result', label: 'Result', content: <div>second tab</div> },
-        ]}
-      />
-    </div>
+    <JsonProvider>
+      <div className="max-w-[600px] max-h-[800px] p-10">
+        <Tabs
+          tabs={[
+            {
+              id: 'config',
+              label: 'Config',
+              content: <JsonConfig />,
+            },
+            { id: 'result', label: 'Result', content: <ResultView /> },
+          ]}
+        />
+      </div>
+    </JsonProvider>
   )
 }
 
