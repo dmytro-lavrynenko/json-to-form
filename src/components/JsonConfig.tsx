@@ -3,12 +3,18 @@ import { Button } from '@/components/ui/button'
 import { useJson } from '../context/JsonContext/useJson'
 
 const JsonConfig = () => {
-  const { jsonInput, setJsonInput, setParsedJson, error, setError } = useJson()
+  const { jsonInput, setJsonInput, setParsedJson, error, setError, isDisabled, setIsDisabled } =
+    useJson()
 
   const handleChange = () => {
     try {
-      const parsed = JSON.parse(jsonInput)
+      const input = jsonInput.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":')
+      const parsed = JSON.parse(input)
+      if (!Array.isArray(parsed.items) || !parsed.items.length) {
+        throw new Error('Items should be an array and contain elements')
+      }
       setError(null)
+      setIsDisabled(true)
       setParsedJson(parsed)
     } catch (err) {
       setError('Invalid JSON: ' + (err instanceof Error ? err.message : String(err)))
@@ -24,10 +30,15 @@ const JsonConfig = () => {
         onChange={(e) => {
           setJsonInput(e.target.value)
           setError(null)
+          setIsDisabled(false)
         }}
       />
+      <span className="-mt-4 text-sm text-muted-foreground italic">
+        Tip: JSON should contain 'items: Array{'<{ type: string, label: string }>'}', 'formTitle:
+        string', 'confirmButtonText: string' and 'cancelButtonText: string'{' '}
+      </span>
       {error && <div className="text-sm text-red-600">{error ?? ''}</div>}
-      <Button onClick={handleChange} disabled={!jsonInput.length}>
+      <Button onClick={handleChange} disabled={!jsonInput.length || isDisabled}>
         Apply
       </Button>
     </>

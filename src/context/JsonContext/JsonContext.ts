@@ -8,6 +8,8 @@ type JsonContextType = {
   setParsedJson: Dispatch<SetStateAction<any>>
   error: string | null
   setError: Dispatch<SetStateAction<string | null>>
+  isDisabled: boolean
+  setIsDisabled: Dispatch<SetStateAction<boolean>>
 }
 
 export const JsonContext = createContext<JsonContextType | undefined>(undefined)

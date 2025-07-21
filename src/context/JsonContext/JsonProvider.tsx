@@ -6,10 +6,19 @@ export const JsonProvider = ({ children }: { children: ReactNode }) => {
   const [jsonInput, setJsonInput] = useState('')
   const [parsedJson, setParsedJson] = useState<any>('')
   const [error, setError] = useState<string | null>(null)
-
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
   return (
     <JsonContext.Provider
-      value={{ jsonInput, setJsonInput, parsedJson, setParsedJson, error, setError }}
+      value={{
+        jsonInput,
+        setJsonInput,
+        parsedJson,
+        setParsedJson,
+        error,
+        setError,
+        isDisabled,
+        setIsDisabled,
+      }}
     >
       {children}
     </JsonContext.Provider>
