@@ -1,3 +1,5 @@
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
 import { useJson } from '../context/JsonContext/useJson'
 
 const JsonConfig = () => {
@@ -9,44 +11,26 @@ const JsonConfig = () => {
       setError(null)
       setParsedJson(parsed)
     } catch (err) {
-      setError('Invalid JSON: ' + (err instanceof Error ? err.message : err))
+      setError('Invalid JSON: ' + (err instanceof Error ? err.message : String(err)))
     }
   }
 
   return (
-    <div className="w-full h-full">
-      <h4>JSON Config</h4>
-      <textarea
-        name="json input"
-        className="w-full
-          h-96
-          p-4
-          border
-          border-gray-300
-          rounded-md
-          resize-none
-          font-mono
-          text-sm
-          focus:outline-none
-          focus:ring-2
-          focus:ring-blue-500
-          focus:border-blue-500
-          bg-white
-          text-gray-800
-          shadow-sm"
+    <>
+      <Textarea
+        className="resize-none h-full font-mono text-sm"
         value={jsonInput}
         placeholder="Input your JSON"
-        onChange={(e) => setJsonInput(e.target.value)}
+        onChange={(e) => {
+          setJsonInput(e.target.value)
+          setError(null)
+        }}
       />
-      <div className="text-red-600 h-[24px]">{error}</div>
-      <button
-        className={`styled-button flex ml-auto mr-0 w-[100px]`}
-        onClick={handleChange}
-        disabled={!jsonInput.length}
-      >
+      {error && <div className="text-sm text-red-600">{error ?? ''}</div>}
+      <Button onClick={handleChange} disabled={!jsonInput.length}>
         Apply
-      </button>
-    </div>
+      </Button>
+    </>
   )
 }
 

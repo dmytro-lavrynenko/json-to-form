@@ -4,7 +4,7 @@ import { JsonContext } from './JsonContext'
 
 export const JsonProvider = ({ children }: { children: ReactNode }) => {
   const [jsonInput, setJsonInput] = useState('')
-  const [parsedJson, setParsedJson] = useState<string>('')
+  const [parsedJson, setParsedJson] = useState<any>('')
   const [error, setError] = useState<string | null>(null)
 
   return (

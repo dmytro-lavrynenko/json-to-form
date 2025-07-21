@@ -1,22 +1,29 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import JsonConfig from './components/JsonConfig'
-import Tabs from './components/Tabs'
 import ResultView from './components/ResultView'
 import { JsonProvider } from './context/JsonContext/JsonProvider'
+import { Card } from './components/ui/card'
 
-function App() {
+const App = () => {
   return (
     <JsonProvider>
-      <div className="max-w-[600px] max-h-[800px] p-10">
-        <Tabs
-          tabs={[
-            {
-              id: 'config',
-              label: 'Config',
-              content: <JsonConfig />,
-            },
-            { id: 'result', label: 'Result', content: <ResultView /> },
-          ]}
-        />
+      <div className="max-w-[600px] p-10">
+        <Tabs defaultValue="config">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="config">Config</TabsTrigger>
+            <TabsTrigger value="result">Result</TabsTrigger>
+          </TabsList>
+          <TabsContent value="config">
+            <Card className="p-4 h-96">
+              <JsonConfig />
+            </Card>
+          </TabsContent>
+          <TabsContent value="result">
+            <Card className="p-4 min-h-96 max-h-screen">
+              <ResultView />
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </JsonProvider>
   )
