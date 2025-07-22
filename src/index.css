@@ -53,6 +53,7 @@
 body {
   background-color: lightcyan;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 @theme inline {
