@@ -27,8 +27,8 @@ const ResultItem = ({ item, control, isSubmitted }: ResultItemProps) => {
       name={id}
       disabled={isSubmitted}
       render={({ field: controllerField }) => (
-        <FormItem className="flex items-center gap-2 mb-2 last:mb-4">
-          <FormLabel htmlFor={id} className="block capitalize truncate w-36">
+        <FormItem className="flex items-center gap-2 mb-2">
+          <FormLabel htmlFor={id} className="block capitalize truncate w-36 text-sm">
             {label}
           </FormLabel>
           <FormControl>

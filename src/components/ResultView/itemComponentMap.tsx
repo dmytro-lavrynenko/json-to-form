@@ -25,18 +25,20 @@ export const itemComponentMap: Record<ItemType, (props: ItemRenderProps) => JSX.
     <Textarea id={id} placeholder="Enter multi-line value" {...controllerField} />
   ),
   boolean: ({ item: { id }, controllerField }) => (
-    <Checkbox
-      {...controllerField}
-      id={id}
-      checked={controllerField.value}
-      onCheckedChange={controllerField.onChange}
-    />
+    <div className="relative">
+      <Checkbox
+        {...controllerField}
+        id={id}
+        checked={controllerField.value}
+        onCheckedChange={controllerField.onChange}
+      />
+    </div>
   ),
   date: ({ item: { id }, controllerField }) => <Input id={id} type="date" {...controllerField} />,
   enum: ({ item, controllerField }) => (
     <RadioGroup onValueChange={controllerField.onChange} value={controllerField.value}>
       {(item.options ?? []).map((option: string) => (
-        <div key={option} className="flex items-center space-x-2">
+        <div key={option} className="flex items-center space-x-2 relative">
           <RadioGroupItem {...controllerField} value={option} id={option} />
           <Label className="block truncate w-36" htmlFor={option}>
             {option}

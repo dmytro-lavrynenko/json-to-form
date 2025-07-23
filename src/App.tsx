@@ -15,12 +15,12 @@ const App = () => (
             <TabsTrigger value="result">Result</TabsTrigger>
           </TabsList>
           <TabsContent value="config">
-            <Card className="p-4 h-96">
+            <Card className="p-4 gap-0">
               <JsonConfig />
             </Card>
           </TabsContent>
           <TabsContent value="result">
-            <Card className="p-4 min-h-96 max-h-[600px] overflow-auto">
+            <Card className="p-2">
               <ResultView />
             </Card>
           </TabsContent>

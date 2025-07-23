@@ -22,27 +22,31 @@ const ResultForm = () => {
         })}
       >
         {title && (
-          <span className="scroll-m-20 text-xl font-semibold tracking-tight mb-2">{title}</span>
+          <span className="scroll-m-20 text-xl font-semibold tracking-tight p-2 pb-0 ">
+            {title}
+          </span>
         )}
         {!items?.length ? (
           <span className="text-center text-sm text-muted-foreground italic">No items.</span>
         ) : (
-          items.map((item) => (
-            <ResultItem
-              key={item.id}
-              item={item}
-              control={form.control}
-              isSubmitted={isSubmitted}
-            />
-          ))
+          <div className="overflow-auto max-h-[500px] mb-2 px-2 pt-2">
+            {items.map((item) => (
+              <ResultItem
+                key={item.id}
+                item={item}
+                control={form.control}
+                isSubmitted={isSubmitted}
+              />
+            ))}
+          </div>
         )}
         {isSubmitted && (
           <span className="text-green-700 scroll-m-20 text-l font-semibold tracking-tight mb-2">
             Form is submitted, to reset form click Cancel button.
           </span>
         )}
-        {(confirmButtonText || cancelButtonText) && ( // fix buttons
-          <div className="flex gap-2 flex-col mt-auto mb-0">
+        {(confirmButtonText || cancelButtonText) && (
+          <div className="flex gap-2 flex-col mt-auto mb-0 px-2 pb-2">
             {confirmButtonText && (
               <Button disabled={isSubmitted} type="submit">
                 {confirmButtonText}
