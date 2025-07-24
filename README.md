@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+# JSON to Form Generator (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Two tabs:
+  - **Config** - for entering JSON input and viewing an example structure
+  - **Result** - displays the generated form based on the JSON
+- Supports multiple field types:
+  - `string`, `numeric`, `multi-line`, `boolean`, `date`, `enum`
+- Supports setting a title and custom text for Confirm and Cancel buttons
+- JSON validation with error feedback
+- Form submission and reset logic
+- Input validation and error handling
+- Covered with unit tests
 
-Currently, two official plugins are available:
+## Tech Stack & Tools
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Tool / Library         | Purpose / Reason for Use                                      |
+|------------------------|---------------------------------------------------------------|
+| **React**              | Building reactive UI components                               |
+| **TypeScript**         | Ensures type safety across the app                            |
+| **Tailwind CSS**       | Utility-first styling for rapid UI development                |
+| **shadcn/ui**          | Accessible pre-built components built on top of Radix UI      |
+| **react-hook-form**    | Lightweight and performant form state management              |
+| **Zod**                | Runtime validation and parsing of JSON form config            |
+| **JSON5**              | Supports flexible, human-friendly JSON syntax                 |
+| **React Context**      | For managing shared state (like parsed JSON and form methods) between tabs |
+| **Vitest**             | Modern test runner, fast and Vite-native                      |
+| **React Testing Library**    | Writing tests that reflect real user interactions 
 
-## Expanding the ESLint configuration
+## Design Considerations
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The project is structured with future scalability and reusability in mind.  
+By using **React Context**, **Tailwind CSS**, **shadcn/ui**, and **Zod**, the architecture enables clean state management, consistent styling, robust validation, and component-level modularity - all of which make it easy to extend the functionality later without major rewrites.
 
+## Run project
 ```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
+## Run test
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+npm run test
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Run prettier
+```js
+npm run format
 ```
