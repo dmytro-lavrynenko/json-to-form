@@ -16,6 +16,7 @@ const ResultForm = () => {
   return (
     <Form {...form}>
       <form
+        data-testid="form"
         className="flex flex-1 flex-col"
         onSubmit={form.handleSubmit((data) => {
           console.log(data)
@@ -55,7 +56,7 @@ const ResultForm = () => {
             {cancelButtonText && (
               <Button
                 onClick={() =>
-                  form.reset(Object.fromEntries(items?.map(({ id }) => [id, undefined]) || []))
+                  form.reset(Object.fromEntries(items?.map(({ id }) => [id, '']) || []))
                 }
                 type="button"
                 variant="outline"
